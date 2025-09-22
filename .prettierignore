@@ -1,0 +1,10 @@
+.env
+/.vscode
+/.github
+/.next
+/.yarn
+/public/templates/*.*
+/out
+
+/package-lock.json
+/package.json
