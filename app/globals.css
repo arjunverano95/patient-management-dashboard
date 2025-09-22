@@ -1,3 +1,7 @@
+/* stylelint-disable at-rule-no-unknown, rule-empty-line-before */
+/* css-lint-disable at-rule-no-unknown */
+/* @tailwindcss directives are valid - ignore unknown at-rule warnings */
+/* prettier-ignore */
 @import 'tailwindcss';
 
 :root {
@@ -22,5 +26,275 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Custom styles for Patient Management Dashboard */
+
+/* Base styles */
+@layer base {
+  html {
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Patient card hover effects */
+  .patient-card {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .patient-card:hover {
+    @apply transform -translate-y-1 shadow-xl;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded hover:bg-gray-400;
+  }
+
+  /* Table styles */
+  .patient-table .ant-table-tbody > tr:hover > td {
+    @apply bg-blue-50;
+  }
+
+  .patient-table .ant-table-thead > tr > th {
+    @apply bg-gray-50 font-semibold text-gray-700;
+  }
+
+  /* Form styles */
+  .patient-form .ant-form-item-label > label {
+    @apply font-medium text-gray-700;
+  }
+
+  .patient-form .ant-input,
+  .patient-form .ant-select-selector,
+  .patient-form .ant-picker {
+    @apply border-gray-300 rounded-lg;
+  }
+
+  .patient-form .ant-input:focus,
+  .patient-form .ant-select-focused .ant-select-selector,
+  .patient-form .ant-picker-focused {
+    @apply border-blue-500 shadow-sm;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium px-4 py-2 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200;
+  }
+
+  /* Status badge styles */
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .status-badge.active {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .status-badge.inactive {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  .status-badge.pending {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  /* Loading spinner styles */
+  .loading-overlay {
+    @apply fixed inset-0 bg-white/75 flex items-center justify-center z-50;
+  }
+
+  /* Error state styles */
+  .error-state {
+    @apply text-center py-12;
+  }
+
+  .error-state .error-icon {
+    @apply text-6xl text-red-300 mb-4;
+  }
+
+  .error-state .error-title {
+    @apply text-xl font-semibold text-gray-700 mb-2;
+  }
+
+  .error-state .error-description {
+    @apply text-gray-500 mb-6;
+  }
+
+  /* Empty state styles */
+  .empty-state {
+    @apply text-center py-12;
+  }
+
+  .empty-state .empty-icon {
+    @apply text-6xl text-gray-300 mb-4;
+  }
+
+  .empty-state .empty-title {
+    @apply text-xl font-semibold text-gray-700 mb-2;
+  }
+
+  .empty-state .empty-description {
+    @apply text-gray-500 mb-6;
+  }
+
+  /* Search and filter styles */
+  .search-filter-card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200;
+  }
+
+  .search-filter-card .ant-card-body {
+    @apply p-4;
+  }
+
+  /* Responsive grid */
+  .patient-grid {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    .patient-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Virtualized list styles */
+  .virtualized-patient-list {
+    @apply w-full;
+  }
+
+  .patient-list-container {
+    /* Custom scrollbar styles applied directly */
+    overflow: auto;
+  }
+
+  .patient-list-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .patient-list-container::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded;
+  }
+
+  .patient-list-container::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded hover:bg-gray-400;
+  }
+
+  /* Animation classes */
+  .fade-in {
+    @apply transition-opacity duration-300;
+  }
+
+  .slide-in {
+    @apply transition-transform duration-300;
+  }
+
+  .scale-in {
+    @apply transition-transform duration-200;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  /* Text truncation with tooltip */
+  .text-truncate {
+    @apply truncate;
+  }
+
+  /* Explicit margin utilities for debugging */
+  .mb-6 {
+    margin-bottom: 1.5rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
+  }
+
+  /* Focus visible styles */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+
+  /* Custom shadows */
+  .shadow-soft {
+    box-shadow:
+      0 2px 15px -3px rgba(0, 0, 0, 0.07),
+      0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  }
+
+  .shadow-medium {
+    box-shadow:
+      0 4px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/20 backdrop-blur-lg border border-white/30;
+  }
+}
+
+/* Dark mode styles (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    @apply bg-gray-900 text-gray-100;
+  }
+
+  .dark-mode .patient-card {
+    @apply bg-gray-800 border-gray-700;
+  }
+
+  .dark-mode .search-filter-card {
+    @apply bg-gray-800 border-gray-700;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .patient-card {
+    @apply shadow-none border border-gray-300;
+  }
 }
